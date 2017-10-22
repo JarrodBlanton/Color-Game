@@ -1,18 +1,48 @@
 body {
     background: #232323;
+    margin: 0;
+    font-family: "Montserrat", "Avenir";
 }
 
-.head {
+button {
+    border: none;
+    background: none;
+    outline: none;
+    text-transform: uppercase;
+    /* Set button size to fille the height of the container */
+    height: 100%;
+    font-weight: 700;
+    color: steelblue;
+    letter-spacing: 1px;
+    font-size: inherit;
+
+
+    /* CSS style effector for hovering effects */
+    transition: all 0.5s;
+    /* Browswer friendly transition - Safari & Firefox */
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+button:hover {
+    background: steelblue;
     color: white;
-    text-align: center;
-    width: 100%;
 }
 
-#container {
-    max-width: 600px;
-    /* centers content in the middle of the screen */
-    margin: 0 auto;
+.head h1 {
+    color: white;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1.1;
+    width: 100%;
+    padding: 20px 0;
+    /* Initial color for background */
+    background: steelblue;
+    margin: 0;
+    
 }
+
 
 .square {
     /* background: purple; */
@@ -20,6 +50,13 @@ body {
     padding-bottom: 30%;
     margin: 1%;    
     float: left;
+
+    /* Apply aesthetic changes to square */
+    border-radius: 15%; /* Gives rounded edges */
+    transition: background 0.5s;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+
 }
 
 .sub-head {
@@ -27,11 +64,11 @@ body {
     text-align: center;
     height: 30px;
     width: 100%;
-    margin: 0 auto;
 }
 
-#goal-color {
-    text-transform: uppercase;
+.selected {
+    background-color: steelblue;
+    color: white;
 }
 
 .wrong {
@@ -43,11 +80,19 @@ body {
 }
 
 
+#container {
+    max-width: 600px;
+    /* centers content in the middle of the screen and adds some space at top and bottom */
+    margin: 20px auto;
+}
+
+#goal-color {
+    font-size: 4rem;
+}
+
+
 #feedback {
     color: black;
+    display: inline-block;
+    width: 20%;
 }
-
-.selected {
-    background-color: blue;
-}
-

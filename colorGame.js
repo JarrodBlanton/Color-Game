@@ -8,7 +8,7 @@ var squares = document.getElementsByClassName("square");
 setColors(numSqrs);
 
 // Grab the element for the top of the page
-var h1 = document.querySelector(".head");
+var h1 = document.querySelector(".head h1");
 
 // Set reset variable
 var reset = false;
@@ -35,6 +35,7 @@ goalText.textContent = goalSquare.style.backgroundColor;
 var easyButton = document.querySelector("#easy");
 var hardButton = document.querySelector("#hard");
 
+// Should refactor for more difficulties, but for now it's fine
 easyButton.addEventListener("click", function () {
     hardButton.classList.remove("selected");        
     easyButton.classList.add("selected");
@@ -67,14 +68,15 @@ function onWin(color) {
     for (var i = 0; i < numSqrs; i++) {
         squares[i].style.backgroundColor = color;
     }
-    h1.style.backgroundColor = color;
+    h1.style.backgroundColor = color;   
 }
 
 // Reset colors, goal square, and header style
 function resetGame() {
     setColors(numSqrs);
     resetGoal();
-    h1.style.backgroundColor = "#232323";
+    buttonColor = "steelblue";
+    h1.style.backgroundColor = "steelblue";
     resetButton.textContent = "New Colors";
     feedback.textContent = "";       
 }
