@@ -1,0 +1,53 @@
+body {
+    background: #232323;
+}
+
+.head {
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+#container {
+    max-width: 600px;
+    /* centers content in the middle of the screen */
+    margin: 0 auto;
+}
+
+.square {
+    /* background: purple; */
+    width: 30%;
+    padding-bottom: 30%;
+    margin: 1%;    
+    float: left;
+}
+
+.sub-head {
+    background: white;
+    text-align: center;
+    height: 30px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#goal-color {
+    text-transform: uppercase;
+}
+
+.wrong {
+    background: #232323;
+    width: 30%;
+    padding-bottom: 30%;
+    margin: 1%;    
+    float: left;
+}
+
+
+#feedback {
+    color: black;
+}
+
+.selected {
+    background-color: blue;
+}
+
