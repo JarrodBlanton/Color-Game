@@ -1,62 +1,18 @@
 // Set initial number of squares to 6 - hard mode 
 var numSqrs = 6;
-
 // Grab all square divs
 var squares = document.getElementsByClassName("square");
-
-// Sets up the colors for the squares
-setColors(numSqrs);
-
 // Grab the element for the top of the page
 var h1 = document.querySelector(".head h1");
-
-// Set reset variable
 var reset = false;
-
-// Grab Buttons
+// Query Buttons
 var resetButton = document.querySelector("#reset");
-
-// If user resets, reset the game
-resetButton.addEventListener("click", function() {
-    resetGame();
-});
-
-// Grab span for user feedback message
 var feedback = document.querySelector("#feedback");
-
-// Goal Square
-var goalSquare = squares[randomSquare(numSqrs)];
-goalSquare.setAttribute("id", "goal-square");
-
-// Set header text for goal square
-var goalText = document.querySelector("#goal-color");
-goalText.textContent = goalSquare.style.backgroundColor;
-
 var easyButton = document.querySelector("#easy");
 var hardButton = document.querySelector("#hard");
-
-// Should refactor for more difficulties, but for now it's fine
-easyButton.addEventListener("click", function () {
-    hardButton.classList.remove("selected");        
-    easyButton.classList.add("selected");
-    // Change number of squares to 3 and reset game
-    numSqrs = 3;
-    for (var i = 3; i < 6; i++) {
-        squares[i].style.display = 'none';
-    }
-    resetGame();
-});
-
-hardButton.addEventListener("click", function () {
-    easyButton.classList.remove("selected");        
-    hardButton.classList.add("selected"); 
-    // Change number of squares back to 6    
-    numSqrs = 6;
-    for (var i = 3; i < 6; i++) {
-        squares[i].style.display = 'block';
-    }
-    resetGame();
-});
+// Goal Square values
+var goalSquare = squares[randomSquare(numSqrs)];
+var goalText = document.querySelector("#goal-color");
 
 // Random math for choosing square
 function randomSquare(max) {
@@ -93,10 +49,8 @@ function resetGoal() {
 // function to assign each square a background color
 function setColors(numSqrs) {
     // Assigns each square a random color
-    for (var i = 0; i < numSqrs; i++) {
-        
+    for (var i = 0; i < numSqrs; i++) {  
         squares[i].style.backgroundColor = randomColor();
-
     }
 };
 
@@ -105,7 +59,6 @@ function randomColor() {
     var r = randomNum();
     var g = randomNum();
     var b = randomNum();
-
     return "rgb(" + r.toString() + ", " + g.toString() + ", " + b.toString() + ")";
 }
 
@@ -114,28 +67,65 @@ function randomNum() {
     return Math.floor(Math.random() * (255 - 0 + 1));
 }
 
-// Logic for assigning event listeners and functionality
-for (var i = 0; i < numSqrs; i++) {
-    
-    squares[i].addEventListener("click", function() {
+// IIFE to add listeners to the window
+(function init() {
+    // Sets up the colors for the squares
+    setColors(numSqrs);
+
+   // Logic for assigning event listeners and functionality
+    for (var i = 0; i < numSqrs; i++) {
         
-        var clickedColor =  this.style.backgroundColor;
-
-        if (clickedColor === goalSquare.style.backgroundColor){
-
-            feedback.textContent = "Correct!";
+        squares[i].addEventListener("click", function() {
             
-            resetButton.textContent = "Play Again?";
+            var clickedColor =  this.style.backgroundColor;
 
-            onWin(clickedColor);
+            if (clickedColor === goalSquare.style.backgroundColor){
 
-        } else {
+                feedback.textContent = "Correct!";
+                
+                resetButton.textContent = "Play Again?";
 
-            feedback.textContent = "Try Again!";
+                onWin(clickedColor);
 
-            this.style.backgroundColor = "#232323";
+            } else {
 
-        }
+                feedback.textContent = "Try Again!";
+
+                this.style.backgroundColor = "#232323";
+
+            }
+        });
+    }
+
+    // If user resets, reset the game
+    resetButton.addEventListener("click", function() {
+        resetGame();
     });
-}
 
+    goalSquare.setAttribute("id", "goal-square");
+
+    goalText.textContent = goalSquare.style.backgroundColor;
+
+    // Should refactor for more difficulties, but for now it's fine
+    easyButton.addEventListener("click", function () {
+        hardButton.classList.remove("selected");        
+        easyButton.classList.add("selected");
+        // Change number of squares to 3 and reset game
+        numSqrs = 3;
+        for (var i = 3; i < 6; i++) {
+            squares[i].style.display = 'none';
+        }
+        resetGame();
+    });
+
+    hardButton.addEventListener("click", function () {
+        easyButton.classList.remove("selected");        
+        hardButton.classList.add("selected"); 
+        // Change number of squares back to 6    
+        numSqrs = 6;
+        for (var i = 3; i < 6; i++) {
+            squares[i].style.display = 'block';
+        }
+        resetGame();
+    });
+})();
