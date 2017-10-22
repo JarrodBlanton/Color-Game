@@ -1,6 +1,3 @@
-
-var reset = false;
-
 // Set initial number of squares to 6 - hard mode 
 var numSqrs = 6;
 
@@ -13,11 +10,14 @@ setColors(numSqrs);
 // Grab the element for the top of the page
 var h1 = document.querySelector(".head");
 
+// Set reset variable
+var reset = false;
+
 // Grab Buttons
-var reset = document.querySelector("#reset");
+var resetButton = document.querySelector("#reset");
 
 // If user resets, reset the game
-reset.addEventListener("click", function() {
+resetButton.addEventListener("click", function() {
     resetGame();
 });
 
@@ -75,6 +75,7 @@ function resetGame() {
     setColors(numSqrs);
     resetGoal();
     h1.style.backgroundColor = "#232323";
+    resetButton.textContent = "New Colors";
     feedback.textContent = "";       
 }
 
@@ -122,7 +123,7 @@ for (var i = 0; i < numSqrs; i++) {
 
             feedback.textContent = "Correct!";
             
-            reset.textContent = "Play Again?";
+            resetButton.textContent = "Play Again?";
 
             onWin(clickedColor);
 
